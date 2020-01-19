@@ -1,17 +1,20 @@
 package com.mongdb.mongodbTest.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="user")//é uma opção que aponta para o banco e procura com esse nome
+//@Document Mas se colocar sem os parentêses, o springdata vai mapear com o nome da classe, só que em letra minúscula 
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private String email;
 	
-	private List<Post> post = new ArrayList<>();
 	
 	public User() {
 	}
