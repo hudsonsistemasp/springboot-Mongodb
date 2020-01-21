@@ -5,43 +5,47 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="user")//é uma opção que aponta para o banco e procura com esse nome
+@Document(collection = "user") // é uma opção que aponta para o banco e procura com esse nome
 //@Document Mas se colocar sem os parentêses, o springdata vai mapear com o nome da classe, só que em letra minúscula 
-public class User implements Serializable{
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
 	private String name;
 	private String email;
 	private String password;
-	
-	
+
 	public User() {
 	}
-	
+
 	public User(String id, String name, String email, String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -49,6 +53,7 @@ public class User implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -77,7 +82,5 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
