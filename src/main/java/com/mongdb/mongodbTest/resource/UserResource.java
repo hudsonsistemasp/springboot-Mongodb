@@ -55,4 +55,12 @@ public class UserResource {
 		//cod. 204 = Quando se faz uma operação e não precisa trazer uma resposta
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> update(@RequestBody UserDTO objUser, @PathVariable String id){
+		User user = userService.findById(id);//Garantir que o usuario existe no banco
+		User userDTO = userService.fromDTO(objUser);
+		User userUpdated = userService.update(userDTO);
+		return ResponseEntity.ok().body(userUpdated);
+	}
 }

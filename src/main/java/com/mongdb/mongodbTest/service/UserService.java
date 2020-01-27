@@ -35,12 +35,24 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
+	public User update(User objUser) {
+		//Optional<User> newObj = userRepository.findById(objUser.getId());
+		User newObj = findById(objUser.getId());
+		updateNewUser(objUser, newObj);
+		userRepository.save(newObj);
+		return newObj;
+	}
+	
+	private void updateNewUser(User objUser, User newObj) {
+		newObj.setName(objUser.getName());
+		newObj.setEmail(objUser.getEmail());
+	}
 	
 	/*Fez a implementação do DTO aqui, por que essa classe já acesso banco de dados direto e fica mais estratégico usar na Resource.
 	 Mas é correto desenhar na classe DTO também, tudo vai da estratégia momentâena.*/
 	
 	public User fromDTO(UserDTO objUserDTO) {
-		System.out.println(objUserDTO.getId() + " " + objUserDTO.getName() + " " + objUserDTO.getEmail());
+		System.out.println("Esse é um objetoDTO: " + objUserDTO.getId() + " " + objUserDTO.getName() + " " + objUserDTO.getEmail());
 		return new User(objUserDTO.getId(),objUserDTO.getName(),objUserDTO.getEmail(),"password Padrao");
 	}
 	
