@@ -1,23 +1,31 @@
 package com.mongdb.mongodbTest.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "post")
 public class Post implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
-	private Instant date;
+	private Date date;
 	private String title;
 	private String body;
+	private User user; 
 	
 	public Post() {
 	}
-	public Post(String id, Instant date, String title, String body) {
+	public Post(String id, Date date, String title, String body, User user) {
+		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
 		this.body = body;
+		this.user = user;
 	}
 	
 	public void setId(String id) {
@@ -26,10 +34,10 @@ public class Post implements Serializable{
 	public String getId() {
 		return id;
 	}
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
 	public void setTitle(String title) {
@@ -43,6 +51,12 @@ public class Post implements Serializable{
 	}
 	public String getBody() {
 		return body;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public int hashCode() {
