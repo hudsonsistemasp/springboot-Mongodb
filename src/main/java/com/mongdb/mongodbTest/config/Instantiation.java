@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.mongdb.mongodbTest.domain.Post;
 import com.mongdb.mongodbTest.domain.User;
+import com.mongdb.mongodbTest.dto.AuthorDTO;
 import com.mongdb.mongodbTest.repository.PostRepository;
 import com.mongdb.mongodbTest.repository.UserRepository;
 
@@ -40,9 +41,26 @@ public class Instantiation implements CommandLineRunner {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+
 		
+		/* Antes de gerar o DTO instanciava e persistia o objeto USER assim, mas não queroemos passar todos os dados do USER, principalmente SENHA
 		Post post1 = new Post(null, sdf.parse("2018/03/21"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
 		Post post2 = new Post(null, sdf.parse("2018/03/23"), "Bom dia", "Acordei feliz hoje!", maria);
+		*/
+		
+		
+		/* 1° MANEIRA com DTO
+		AuthorDTO mariaDTO = new AuthorDTO(maria.getId(), maria.getName(), maria.getEmail());
+		
+		Post post1 = new Post(null, sdf.parse("2018/03/21"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", mariaDTO);
+		Post post2 = new Post(null, sdf.parse("2018/03/23"), "Bom dia", "Acordei feliz hoje!", mariaDTO);
+		*/
+		
+		/*2° MANEIRA com DTO*/
+		AuthorDTO mariaDTO = new AuthorDTO(maria);
+		Post post1 = new Post(null, sdf.parse("2018/03/21"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", mariaDTO);
+		Post post2 = new Post(null, sdf.parse("2018/03/23"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+		
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
