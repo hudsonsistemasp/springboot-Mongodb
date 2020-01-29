@@ -1,8 +1,11 @@
 package com.mongdb.mongodbTest.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user") // é uma opção que aponta para o banco e procura com esse nome
@@ -15,7 +18,13 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String password;
-
+	
+	//Associar o Post ao usuario, mas não faremos os posts aparecerem, apenas os códigos de referência, para isso a notação abaixo
+	//o parâmetro 'lazy=true', diz que quando fizermos um GET no User, não irá trafegar dados de post à toa, só quando solicitado
+	@DBRef(lazy=true)
+	private List<Post> posts = new ArrayList<>();
+	
+	
 	public User() {
 	}
 
@@ -56,6 +65,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
+	public List<Post> getPosts(){
+		return posts;
 	}
 
 	@Override
