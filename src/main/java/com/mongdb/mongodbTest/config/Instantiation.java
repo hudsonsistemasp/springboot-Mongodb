@@ -66,6 +66,8 @@ public class Instantiation implements CommandLineRunner {
 		//Associar todos comentários de um User a ele
 		maria.getPosts().addAll(Arrays.asList(post1, post2));
 		userRepository.save(maria);
+		
+		
 	}
 
 }
