@@ -9,14 +9,12 @@ public class AuthorDTO implements Serializable{
 	
 	private String id;
 	private String nome;
-	private String email;
 	
 	public AuthorDTO() {		
 	}
 	public AuthorDTO(String id, String nome, String email) {
 		this.id = id;
 		this.nome = nome;
-		this.email = email;
 	}
 	public AuthorDTO(User objUser) {
 		this.id = objUser.getId();
@@ -35,12 +33,6 @@ public class AuthorDTO implements Serializable{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }
