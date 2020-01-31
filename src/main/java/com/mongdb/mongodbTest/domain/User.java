@@ -21,7 +21,7 @@ public class User implements Serializable {
 	
 	//Associar o Post ao usuario, mas não faremos os posts aparecerem, apenas os códigos de referência, para isso a notação abaixo
 	//o parâmetro 'lazy=true', diz que quando fizermos um GET no User, não irá trafegar dados de post à toa, só quando solicitado
-	@DBRef(lazy=true)
+	//@DBRef(lazy=true)
 	private List<Post> posts = new ArrayList<>();
 	
 	

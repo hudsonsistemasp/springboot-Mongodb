@@ -2,6 +2,7 @@ package com.mongdb.mongodbTest.config;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import com.mongdb.mongodbTest.domain.Post;
 import com.mongdb.mongodbTest.domain.User;
 import com.mongdb.mongodbTest.dto.AuthorDTO;
+import com.mongdb.mongodbTest.dto.CommentsDTO;
 import com.mongdb.mongodbTest.repository.PostRepository;
 import com.mongdb.mongodbTest.repository.UserRepository;
 
@@ -43,7 +45,7 @@ public class Instantiation implements CommandLineRunner {
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
 		
-		/* Antes de gerar o DTO instanciava e persistia o objeto USER assim, mas não queroemos passar todos os dados do USER, principalmente SENHA
+		/* Antes de gerar o DTO instanciava e persistia o objeto USER assim, mas não queremos passar todos os dados do USER, principalmente SENHA
 		Post post1 = new Post(null, sdf.parse("2018/03/21"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
 		Post post2 = new Post(null, sdf.parse("2018/03/23"), "Bom dia", "Acordei feliz hoje!", maria);
 		*/
@@ -63,9 +65,23 @@ public class Instantiation implements CommandLineRunner {
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
-		//Associar todos comentários de um User a ele
+		//3-Associar todos comentários de um User a ele
 		maria.getPosts().addAll(Arrays.asList(post1, post2));
 		userRepository.save(maria);
+		
+		//Criar os comentários para associar aos posts
+		
+		CommentsDTO comment1 = new CommentsDTO("Boa viagem mano!", sdf.parse("2018/03/21"), new AuthorDTO(alex));
+		CommentsDTO comment2 = new CommentsDTO("Aproveite!", sdf.parse("2018/03/22"), new AuthorDTO(bob));
+		CommentsDTO comment3 = new CommentsDTO("Tenha um ótimo dia!", sdf.parse("2018/03/23"), new AuthorDTO(alex));
+		
+		post1.setComments(Arrays.asList(comment1,comment2));
+		post2.setComments(Arrays.asList(comment3));
+		/*
+		post1.getComments().addAll(Arrays.asList(comment1, comment2));
+		post2.getComments().addAll(Arrays.asList(comment3));
+		*/
+		postRepository.saveAll(Arrays.asList(post1,post2));
 		
 		
 	}
