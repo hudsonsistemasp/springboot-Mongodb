@@ -21,7 +21,6 @@ public class AuthorDTO implements Serializable{
 		this.nome = objUser.getName();
 	}
 	
-	
 	public void setId(String id) {
 		this.id = id;
 	}

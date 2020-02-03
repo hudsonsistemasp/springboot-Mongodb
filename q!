@@ -1,6 +1,0 @@
-[33mf5e7a08[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m Criação de classe para tratar exceções por busca de id´s de USERS  inexistentes.
-[33m32735b8[m[33m ([m[1;31mbranch01/master[m[33m)[m Usando padrão DTO para retorno dos dados da classe USER.
-[33md25a709[m Criação do arquivo de configuração de instanciação de dados para a base de dados.
-[33m3fa28ee[m Criação classe Repository, Service e Resource da classe User. Conexão com o MOngoDB.
-[33m1dd8ffc[m projeto cridado
-[33mf9451d9[m Initial commit

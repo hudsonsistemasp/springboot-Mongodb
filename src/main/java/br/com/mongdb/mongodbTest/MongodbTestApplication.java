@@ -1,4 +1,4 @@
-package com.mongdb.mongodbTest;
+package br.com.mongdb.mongodbTest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
